@@ -1,3 +1,5 @@
+// @flow
+
 import assert from 'assert';
 import {resolve} from 'path';
 import {fork} from 'child_process';
@@ -78,7 +80,7 @@ getPort().then(port => {
 
     // retry a function until it returns something truthy
     // by default, this will wait up to 5000
-    function waitFor(fn, timeout = 5000) {
+    function waitFor<T>(fn: () => T, timeout: number = 5000): T {
       const timeoutEnd = Date.now() + timeout;
       while (Date.now() < timeout) {
         const value = fn();
