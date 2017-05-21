@@ -1,9 +1,18 @@
+// @flow
+
 import React from 'react';
 import AddStoryContainer from './AddStoryContainer';
 import Spinner from './Spinner';
 import Story from './Story';
 
-export default function App(props) {
+type Props = {|
+  +loading: boolean,
+  +stories: Array<{|+id: string, +votes: number, +body: string|}>,
+  +onVote: (id: string) => mixed,
+  +onAddStory: (body: string) => mixed,
+|};
+
+export default function App(props: Props) {
   if (props.loading) return <Spinner />;
   return (
     <div>

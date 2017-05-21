@@ -1,13 +1,20 @@
+// @flow
+
 import React, {Component} from 'react';
 import AddStory from './AddStory';
 
+type Props = {|
+  +onAddStory: (body: string) => mixed,
+|};
+
 export default class AddStoryContainer extends Component {
+  props: Props;
   state = {body: ''};
 
-  _onChangeBody = (e) => {
+  _onChangeBody = (e: SyntheticInputEvent) => {
     this.setState({body: e.target.value});
   };
-  _onSubmit = (e) => {
+  _onSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     if (!this.state.body) return;
     this.props.onAddStory(this.state.body);

@@ -1,8 +1,11 @@
+// @flow
+
 import React, {Component} from 'react';
 import request from 'then-request';
 import App from './App';
 
 class AppContainer extends Component {
+  props: {||};
   state = {loading: true, stories: []};
   componentDidMount() {
     this._loadStories();
@@ -13,7 +16,7 @@ class AppContainer extends Component {
       .then(JSON.parse)
       .done(stories => this.setState({loading: false, stories}));
   };
-  _onAddStory = (body) => {
+  _onAddStory = (body: string) => {
     request('put', '/api/stories', {
       json: {body: body},
     })
@@ -21,7 +24,7 @@ class AppContainer extends Component {
       .then(JSON.parse)
       .done(stories => this.setState({stories}));
   };
-  _onVote = (id) => {
+  _onVote = (id: string) => {
     request('post', '/api/stories/' + id + '/vote')
       .getBody('utf8')
       .then(JSON.parse)

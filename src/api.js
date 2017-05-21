@@ -1,3 +1,5 @@
+// @flow
+
 import fs from 'fs';
 import uid from 'uid';
 
@@ -12,11 +14,15 @@ function readDatabase() {
   }
 }
 
-let state = readDatabase();
+let state: $ReadOnlyArray<{|
+  +id: string,
+  +votes: number,
+  +body: string,
+|}> = readDatabase();
 
 async function writeDatabase(newState) {
   state = newState.sort((a, b) => {
-    return b.votes - a.votes;
+    return a.votes - b.votes;
   });
   return new Promise((resolve, reject) => {
     fs.writeFile(
@@ -31,7 +37,7 @@ async function writeDatabase(newState) {
 }
 
 // CREATE
-export async function addStory(storyBody) {
+export async function addStory(storyBody: string) {
   if (typeof storyBody !== 'string') {
     throw new TypeError('story body must be a string');
   }
@@ -39,12 +45,14 @@ export async function addStory(storyBody) {
 }
 
 // READ
-export async function getStories() {
+export async function getStories(): Promise<
+  $ReadOnlyArray<{|+id: string, +votes: number, +body: string|}>,
+> {
   return state;
 }
 
 // UPDATE
-export async function voteStory(id) {
+export async function voteStory(id: string) {
   await writeDatabase(
     state.map(story => {
       if (story.id !== id) {

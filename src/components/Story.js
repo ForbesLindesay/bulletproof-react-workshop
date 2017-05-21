@@ -1,6 +1,15 @@
+// @flow
+
 import React, {Component} from 'react';
 
-function Story(props) {
+type Props = {|
+  +id: string,
+  +votes: number,
+  +body: string,
+  +onVote: (id: string) => mixed,
+|};
+
+function Story(props: Props) {
   return (
     <article data-test-id="story">
       <span className="vote-count" data-test-id="VoteCount">

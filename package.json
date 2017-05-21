@@ -4,6 +4,8 @@
   "description": "A demo app for a workshop on bulletproffing react apps",
   "main": "index.js",
   "scripts": {
+    "flow": "flow",
+    "flow-typed": "flow-typed install",
     "prestart": "node yarn --offline && prettier --single-quote --trailing-comma all --no-bracket-spacing --parser flow --write \"src/**/*.js\"",
     "start": "node server",
     "test": "jest src",

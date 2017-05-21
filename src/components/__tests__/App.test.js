@@ -7,7 +7,14 @@ import App from '../App';
 test('App', () => {
   expect(
     renderer
-      .create(<App loading={true} stories={[]} onAddStory={() => {}} onVote={() => {}} />)
+      .create(
+        <App
+          loading={true}
+          stories={[]}
+          onAddStory={() => {}}
+          onVote={() => {}}
+        />,
+      )
       .toJSON(),
   ).toMatchSnapshot('loading');
 
