@@ -1,34 +1,30 @@
 // @flow
 
+import type {Story} from '../story';
 import React, {Component} from 'react';
-import request from 'then-request';
 import App from './App';
+import addStory from '../api-client/addStory';
+import getStories from '../api-client/getStories';
+import voteStory from '../api-client/voteStory';
 
+type State = {
+  loading: boolean,
+  stories: $ReadOnlyArray<Story>,
+};
 class AppContainer extends Component {
   props: {||};
-  state = {loading: true, stories: []};
+  state: State = {loading: true, stories: []};
   componentDidMount() {
     this._loadStories();
   }
   _loadStories = () => {
-    request('get', '/api/stories')
-      .getBody('utf8')
-      .then(JSON.parse)
-      .done(stories => this.setState({loading: false, stories}));
+    getStories().then(stories => this.setState({loading: false, stories}));
   };
   _onAddStory = (body: string) => {
-    request('put', '/api/stories', {
-      json: {body: body},
-    })
-      .getBody('utf8')
-      .then(JSON.parse)
-      .done(stories => this.setState({stories}));
+    addStory({body}).then(stories => this.setState({stories}));
   };
   _onVote = (id: string) => {
-    request('post', '/api/stories/' + id + '/vote')
-      .getBody('utf8')
-      .then(JSON.parse)
-      .done(stories => this.setState({stories}));
+    voteStory({id}).then(stories => this.setState({stories}));
   };
   render() {
     return (

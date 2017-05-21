@@ -4,11 +4,16 @@
   "description": "A demo app for a workshop on bulletproffing react apps",
   "main": "index.js",
   "scripts": {
+    "build": "babel-node src/build-api.js",
+    "postbuild": "prettier --single-quote --trailing-comma all --no-bracket-spacing --parser flow --write \"src/**/*.js\"",
+    "preflow": "npm run build",
     "flow": "flow",
     "flow-typed": "flow-typed install",
-    "prestart": "node yarn --offline && prettier --single-quote --trailing-comma all --no-bracket-spacing --parser flow --write \"src/**/*.js\"",
+    "prestart": "node yarn --offline && npm run build",
     "start": "node server",
+    "pretest": "npm run build",
     "test": "jest src",
+    "pretest:e2e": "npm run build",
     "test:e2e": "babel-node src/end-to-end-tests/index.js"
   },
   "repository": {

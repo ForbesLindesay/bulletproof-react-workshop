@@ -1,5 +1,6 @@
 // @flow
 
+import type {Story as StoryType} from '../story';
 import React from 'react';
 import AddStoryContainer from './AddStoryContainer';
 import Spinner from './Spinner';
@@ -7,7 +8,7 @@ import Story from './Story';
 
 type Props = {|
   +loading: boolean,
-  +stories: Array<{|+id: string, +votes: number, +body: string|}>,
+  +stories: $ReadOnlyArray<StoryType>,
   +onVote: (id: string) => mixed,
   +onAddStory: (body: string) => mixed,
 |};
