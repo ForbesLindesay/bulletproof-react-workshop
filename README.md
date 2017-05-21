@@ -104,12 +104,12 @@ function getStoryWithText(text) {
   for (const story of stories) {
     // for each of the stories, check to see if it includes the text we're checking for
     if (
-      storyElement
+      story
         .getElement('[data-test-id="StoryBody"]')
         .getText()
         .includes(text)
     ) {
-      return storyElement;
+      return story;
     }
   }
   return null;
