@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spinner 1`] = `
+<article
+  data-test-id="story"
+>
+  <span
+    className="vote-count"
+    data-test-id="VoteCount"
+  >
+    5
+  </span>
+  <div
+    className="story-body"
+    data-test-id="StoryBody"
+  >
+    A great story
+  </div>
+  <button
+    data-test-id="AddVote"
+    onClick={[Function]}
+    type="button"
+  >
+    Vote
+  </button>
+</article>
+`;

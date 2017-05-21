@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loading 1`] = `
+<div>
+  Loading...
+</div>
+`;
+
+exports[`no stories 1`] = `
+<div>
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      data-test-id="NewStoryBody"
+      onChange={[Function]}
+      value=""
+    />
+    <button
+      data-test-id="AddStoryButton"
+      type="submit"
+    >
+      Add Story
+    </button>
+  </form>
+</div>
+`;
+
+exports[`with 2 stories 1`] = `
+<div>
+  <article
+    data-test-id="story"
+  >
+    <span
+      className="vote-count"
+      data-test-id="VoteCount"
+    >
+      5
+    </span>
+    <div
+      className="story-body"
+      data-test-id="StoryBody"
+    >
+      Awesome story a
+    </div>
+    <button
+      data-test-id="AddVote"
+      onClick={[Function]}
+      type="button"
+    >
+      Vote
+    </button>
+  </article>
+  <article
+    data-test-id="story"
+  >
+    <span
+      className="vote-count"
+      data-test-id="VoteCount"
+    >
+      3
+    </span>
+    <div
+      className="story-body"
+      data-test-id="StoryBody"
+    >
+      Awesome story b
+    </div>
+    <button
+      data-test-id="AddVote"
+      onClick={[Function]}
+      type="button"
+    >
+      Vote
+    </button>
+  </article>
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      data-test-id="NewStoryBody"
+      onChange={[Function]}
+      value=""
+    />
+    <button
+      data-test-id="AddStoryButton"
+      type="submit"
+    >
+      Add Story
+    </button>
+  </form>
+</div>
+`;
