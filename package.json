@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "prestart": "node yarn --offline && prettier --single-quote --trailing-comma all --no-bracket-spacing --parser flow --write \"src/**/*.js\"",
-    "start": "node server"
+    "start": "node server",
+    "test:e2e": "babel-node src/end-to-end-tests/index.js"
   },
   "repository": {
     "type": "git",
