@@ -264,3 +264,56 @@ props: Props;
 Repeat this process of adding types to each component until there are no more flow errors.
 
 ---
+
+If you run tests again, you'll see they are failing.  This is because they don't understand the flow syntax and cannot ignore it.
+
+---
+
+**Exercise I**
+
+You can fix this by updating `.babelrc` to:
+
+```
+{
+  "presets": "forbeslindesay",
+  "plugins": ["transform-flow-strip-types"]
+}
+```
+
+---
+
+### If everyone is really fast, maybe we'll get to some of these bits
+
+---
+
+**Exercise J**
+
+Add flow typing to all the other files (server side code, tests and the end to end test).
+
+_Hint:_ the arguments for functions being passsed to express should look like:
+
+```
+(req: express$Request, res: express$Response, next: express$NextFunction)
+```
+
+These `express$` types are special types provided by the flow-typed implementation for express.
+
+_Hint:_ in end to end tests, you'll need to use a generic type for the `waitFor` function.  That looks like:
+
+```js
+function waitFor<T>(fn: () => T, timeout: number = 5000): T {
+  // ...
+}
+```
+
+This tells `flow` that `waitFor` always returns the same type as the `fn` function returns.
+
+---
+
+**Exercise K (really difficult)**
+
+Refactor the API so that you can generate a statically typed client.
+
+Check out the [api-flow](https://github.com/ForbesLindesay/bulletproof-react-workshop/tree/api-flow) branch for how to do this.
+
+---
