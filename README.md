@@ -220,3 +220,47 @@ Add a test for the AddStoryContainer.  It should:
 3. check that the `onAddStory` method was called with the text body as its argument
 
 ---
+
+## flow
+
+> Automated verification of your entire program. It can check that your assumptions about types (the body is a string, the vote count is a number) are never violated.
+
+---
+
+**Exercise H**
+
+Add another script to the package.json file:
+
+```diff
+  "scripts": {
++   "flow": "flow"
+  },
+```
+
+Run `npm run flow`
+
+You should see `No errors!` printed out to the terminal (this might take a few seconds).
+
+Try adding a comment to the top of each file in `components` that says `// @flow`.  This enables flow for these files.  Running `npm run flow` should now give you a list of errors.
+
+Add the following type declaration to the `AddStory` component:
+
+```js
+type Props = {|
+  +body: string,
+  +onSubmit: (e: SyntheticInputEvent) => mixed,
+  +onChangeBody: (e: SyntheticInputEvent) => mixed,
+|};
+```
+
+> (The `|` at the beginning and end mean that no other props may be passed. The `+` means that these properties are read-only, this is almost always what you want).
+
+You can then replace `(props)` with `(props: Props)` in the function arguments to use this type declaration.  For Containers, you would add the following as the first line of the class's body:
+
+```js
+props: Props;
+```
+
+Repeat this process of adding types to each component until there are no more flow errors.
+
+---
